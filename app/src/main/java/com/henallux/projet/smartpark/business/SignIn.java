@@ -33,6 +33,7 @@ public class SignIn extends AppCompatActivity {
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 setContentView(R.layout.signup);
             }
         });
@@ -42,39 +43,50 @@ public class SignIn extends AppCompatActivity {
         SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText editPseudo = (EditText) findViewById(R.id.loginPseudo);
+                EditText editPassword = (EditText) findViewById(R.id.loginPassword);
+                String pseudo = editPseudo.getText().toString();
+                String password = editPassword.getText().toString();
 
+                new logIn().execute(pseudo, password);
 
 
             }
         });
     }
 
-    private class logIn extends AsyncTask<String, Void, User>
+    private class logIn extends AsyncTask<String, Void, Boolean>
     {
-        @Override
-        protected User doInBackground()
-        {
-            EditText editPseudo = (EditText) findViewById(R.id.loginPseudo);
-            String pseudo = editPseudo.getText().toString();
 
-            User user = new User();
+        @Override
+        protected Boolean doInBackground(String... log) {
+
+            Boolean connection = false;
             UserDAO userDao = new UserDAO();
             try
             {
-                user = userDao.signIn(pseudo);
+                connection = userDao.signIn(log[0], log[1]);
             }
             catch (Exception e)
             {
-                Toast.makeText(SignIn.this, "Probleme ..", Toast.LENGTH_SHORT).show();
+
             }
 
-            return user;
+            return connection;
         }
 
         @Override
-        protected void onPostExecute(User user)
+        protected void onPostExecute(Boolean connection)
         {
-            Toast.makeText(SignIn.this, "Probleme ..", Toast.LENGTH_SHORT).show();
+            if(connection)
+            {
+                setContentView(R.layout.signup);
+            }
+            else
+            {
+                Toast.makeText(SignIn.this, "Connexion impossible", Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 

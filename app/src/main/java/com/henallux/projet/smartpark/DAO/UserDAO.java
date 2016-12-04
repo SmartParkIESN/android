@@ -20,22 +20,41 @@ public class UserDAO {
 
     }
 
-    public User signIn(String pseudo) throws Exception
+    public Boolean signIn(String pseudo, String password) throws Exception
     {
-        return getUser(pseudo);
+        User user = getUser(pseudo);
+        Log.d("Password enter", password);
+        Log.d("Password user", user.getPassword());
+        if(user != null)
+        {
+            if(password.equals(user.getPassword()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public User getUser(String pseudo) throws Exception
     {
 
-        URL url = new URL("http://smartpark1.azurewebsites.net/api/Users?pseudo=" + pseudo);
+        String URL = "http://smartpark1.azurewebsites.net/api/Users?pseudo=" + pseudo;
+        URL url = new URL(URL);
         URLConnection connection = url.openConnection();
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder sb = new StringBuilder();
         String stringJson = "", line;
-        while((line= br.readLine()) != null)
+        while((line = br.readLine()) != null)
         {
             sb.append(line);
+
         }
         br.close();
         stringJson = sb.toString();
@@ -46,13 +65,15 @@ public class UserDAO {
 
     private User jsonToUser(String stringJson) throws Exception
     {
+
         User user = new User();
-        JSONArray jsonArray = new JSONArray(stringJson);
-        for(int i =0; i < jsonArray.length(); i++)
-        {
-            JSONObject jsonUser = jsonArray.getJSONObject(i);
-            user = new User(jsonUser.getInt("Id"), jsonUser.getString("Pseudo"), jsonUser.getString("Email"), jsonUser.getString("Password"), jsonUser.getString("PhoneNumber"));
-        }
+
+        JSONObject jsonUser = new JSONObject(stringJson);
+        user.setId(jsonUser.getInt("Id"));
+        user.setPseudo(jsonUser.getString("Pseudo"));
+        user.setPassword(jsonUser.getString("Password"));
+        user.setEmail(jsonUser.getString("Email"));
+        user.setPhonenumber(jsonUser.getString("PhoneNumber"));
 
         return user;
 
