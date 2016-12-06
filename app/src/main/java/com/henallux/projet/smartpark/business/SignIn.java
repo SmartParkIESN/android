@@ -11,8 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.henallux.projet.smartpark.R;
-import com.henallux.projet.smartpark.modele.User;
-import com.henallux.projet.smartpark.DAO.UserDAO;
+import com.henallux.projet.smartpark.controller.UserController;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,10 +61,10 @@ public class SignIn extends AppCompatActivity {
         protected Boolean doInBackground(String... log) {
 
             Boolean connection = false;
-            UserDAO userDao = new UserDAO();
+            UserController userController = new UserController();
             try
             {
-                connection = userDao.signIn(log[0], log[1]);
+                connection = userController.signIn(log[0], log[1]);
             }
             catch (Exception e)
             {
