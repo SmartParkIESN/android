@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SmartPark</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_createParking">Create parking</string>
+    <string name="menu_createAnnouncement">New announce</string>
+    <string name="menu_myAnnounce">My announces</string>
+    <string name="menu_Profil">My profil</string>
+    <string name="menu_logOut">Log out</string>
 </resources>

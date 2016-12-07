@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/menu_search"
+        app:showAsAction="never"
+        android:title="@string/menu_search" />
+    <item
+        android:id="@+id/menu_createParking"
+        app:showAsAction="never"
+        android:title="@string/menu_createParking" />
+    <item
+        android:id="@+id/menu_createAnnouncement"
+        app:showAsAction="never"
+        android:title="@string/menu_createAnnouncement" />
+    <item
+        android:id="@+id/menu_myAnnounce"
+        app:showAsAction="never"
+        android:title="@string/menu_myAnnounce" />
+    <item
+        android:id="@+id/menu_Profil"
+        app:showAsAction="never"
+        android:title="@string/menu_Profil" />
+    <item
+        android:id="@+id/menu_logOut"
+        app:showAsAction="never"
+        android:title="@string/menu_logOut" />
+</menu>
