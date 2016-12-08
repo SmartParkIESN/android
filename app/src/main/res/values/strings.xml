@@ -6,4 +6,10 @@
     <string name="menu_myAnnounce">My announces</string>
     <string name="menu_Profil">My profil</string>
     <string name="menu_logOut">Log out</string>
+    <string name="signUpPseudoTxt">Pseudo :</string>
+    <string name="signUpMailTxt">Mail :</string>
+    <string name="signUpPassTxt">Password :</string>
+    <string name="signUpPassConfTxt">Password conf. :</string>
+    <string name="signUpTelTxt">Phone number :</string>
+    <string name="signUpTxt">Sign up</string>
 </resources>
