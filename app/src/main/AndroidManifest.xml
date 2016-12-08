@@ -17,6 +17,7 @@
         </activity>
         <activity  android:label="Sign Up" android:parentActivityName=".business.SignIn" android:name=".business.SignUp"></activity>
         <activity android:label="Main"  android:name=".business.Welcome"></activity>
+        <activity  android:label="Profile " android:parentActivityName=".business.Welcome" android:name=".business.Profile"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 

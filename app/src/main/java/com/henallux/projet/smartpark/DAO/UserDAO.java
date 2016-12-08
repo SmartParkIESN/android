@@ -10,6 +10,8 @@ import org.json.*;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+
+import com.google.gson.Gson;
 import com.henallux.projet.smartpark.modele.User;
 
 
@@ -42,6 +44,27 @@ public class UserDAO {
         }
     }
 
+    public Boolean signUp(User user) throws Exception
+    {
+        int responseCode= 0;
+        URL url = new URL("http://smartpark1.azurewebsites.net/api/Users");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-type", "application/json");
+        connection.setDoOutput(true);
+        OutputStream outputStream = connection.getOutputStream();
+        OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+        connection.connect();
+        writer.write(userToJson(user));
+        writer.flush();
+        responseCode = connection.getResponseCode();
+        writer.close();
+        outputStream.close();
+        connection.disconnect();
+
+        return true;
+    }
+
     public User getUser(String pseudo) throws Exception
     {
 
@@ -61,6 +84,13 @@ public class UserDAO {
 
         return jsonToUser(stringJson);
 
+    }
+
+    public <T> String userToJson(T user)
+    {
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(user);
+        return jsonString;
     }
 
     private User jsonToUser(String stringJson) throws Exception

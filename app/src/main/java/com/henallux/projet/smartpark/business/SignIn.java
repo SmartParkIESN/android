@@ -18,6 +18,7 @@ import com.henallux.projet.smartpark.controller.UserController;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class SignIn extends AppCompatActivity {
 
@@ -28,6 +29,8 @@ public class SignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin);
+        TextView Connexion = (TextView) findViewById(R.id.SignInCoTxt);
+        Connexion.setText("");
 
 
         //CLICK SIGN UP
@@ -49,7 +52,8 @@ public class SignIn extends AppCompatActivity {
                 EditText editPassword = (EditText) findViewById(R.id.loginPassword);
                 String pseudo = editPseudo.getText().toString();
                 String password = editPassword.getText().toString();
-
+                TextView Connexion = (TextView) findViewById(R.id.SignInCoTxt);
+                Connexion.setText("Process ...");
                 new logIn().execute(pseudo, password);
             }
         });
@@ -82,10 +86,14 @@ public class SignIn extends AppCompatActivity {
             {
                 Intent intent = new Intent(SignIn.this, Welcome.class);
                 startActivity(intent);
+                TextView Connexion = (TextView) findViewById(R.id.SignInCoTxt);
+                Connexion.setText("");
             }
             else
             {
                 Toast.makeText(SignIn.this, "Connexion impossible", Toast.LENGTH_SHORT).show();
+                TextView Connexion = (TextView) findViewById(R.id.SignInCoTxt);
+                Connexion.setText("");
             }
 
         }

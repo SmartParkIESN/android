@@ -25,6 +25,13 @@ public class User {
         this.phonenumber = phonenumber;
     }
 
+    public User(String pseudo, String email, String password, String phonenumber) {
+        this.pseudo = pseudo;
+        this.email = email;
+        this.password = password;
+        this.phonenumber = phonenumber;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

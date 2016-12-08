@@ -105,4 +105,12 @@
         android:layout_alignLeft="@+id/loginPseudo"
         android:layout_alignStart="@+id/loginPseudo" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewTest"
+        android:layout_toRightOf="@+id/textViewTest"
+        android:layout_toEndOf="@+id/textViewTest"
+        android:id="@+id/SignInCoTxt" />
+
 </RelativeLayout>
