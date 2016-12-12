@@ -14,4 +14,11 @@
     <string name="signUpTxt">Sign up</string>
     <string name="profileTxt">Profile</string>
     <string name="modifyTxt">Modify</string>
+    <string name="createParkingTxt">Create Parking</string>
+    <string name="createParkingTitle">Title</string>
+    <string name="createParkingDescription">Description</string>
+    <string name="createParkingPlace">Place</string>
+    <string name="createParkingStreet">Street</string>
+    <string name="createParkingNumber">Number</string>
+    <string name="createTxt">Create</string>
 </resources>

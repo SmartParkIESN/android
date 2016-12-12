@@ -2,12 +2,21 @@ package com.henallux.projet.smartpark.business;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.henallux.projet.smartpark.R;
+import com.henallux.projet.smartpark.controller.AnnoucementController;
+import com.henallux.projet.smartpark.modele.Annoucement;
+
+import java.util.ArrayList;
 
 /**
  * Created by Lucas on 07/12/2016.
@@ -20,6 +29,42 @@ public class Welcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
 
+
+        new loadAnnoucements().execute();
+    }
+
+    private class loadAnnoucements extends AsyncTask<String, Void, ArrayList<Annoucement>>
+    {
+
+        @Override
+        protected ArrayList<Annoucement> doInBackground(String... log) {
+
+            ArrayList<Annoucement> annoucements = new ArrayList<>();
+            AnnoucementController annoucementsController = new AnnoucementController();
+
+            try
+            {
+                annoucements = annoucementsController.getAllAnnoucements();
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return annoucements;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Annoucement> annoucements)
+        {
+            ListView listAnnounces;
+            listAnnounces = (ListView) findViewById(R.id.listAnnounces);
+
+            ArrayAdapter<Annoucement> adapter = new ArrayAdapter<Annoucement>(Welcome.this, android.R.layout.simple_list_item_1, annoucements);
+            listAnnounces.setAdapter(adapter);
+
+            Toast.makeText(Welcome.this, "Chargé !", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

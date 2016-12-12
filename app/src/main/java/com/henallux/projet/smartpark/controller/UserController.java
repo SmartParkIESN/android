@@ -24,4 +24,9 @@ public class UserController {
     {
         return userDAO.signUp(user);
     }
+
+    public boolean modifyUser(User user) throws Exception
+    {
+        return userDAO.modifyUser(user);
+    }
 }

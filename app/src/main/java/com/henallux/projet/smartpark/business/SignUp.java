@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -57,7 +58,8 @@ public class SignUp extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(SignUp.this, "Passwords doesn't match !", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(view, "Passwords don't match !", Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
             }
         });

@@ -3,6 +3,7 @@ import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +20,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
+
+import static android.R.attr.duration;
 
 public class SignIn extends AppCompatActivity {
 
@@ -51,6 +54,8 @@ public class SignIn extends AppCompatActivity {
                     String pseudo = editPseudo.getText().toString();
                     String password = editPassword.getText().toString();
                     new logIn().execute(pseudo, password);
+                    Snackbar snackbar = Snackbar.make(view, "Connection...", Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
             });
 

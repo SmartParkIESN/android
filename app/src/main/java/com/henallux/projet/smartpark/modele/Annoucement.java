@@ -1,5 +1,6 @@
 package com.henallux.projet.smartpark.modele;
 
+
 import java.util.Date;
 
 /**
@@ -14,10 +15,9 @@ public class Annoucement {
     Date DateFrom;
     Date DateTo;
     Boolean Rented;
-    User user;
     Parking parking;
 
-    public Annoucement(int i, String t, int p, Date df, Date dt, Boolean r, User u, Parking pk)
+    public Annoucement(int i, String t, int p, Date df, Date dt, Boolean r, Parking pk)
     {
         Id = i;
         Title = t;
@@ -25,7 +25,6 @@ public class Annoucement {
         DateFrom = df;
         DateTo = dt;
         Rented = r;
-        user = u;
         parking = pk;
     }
 
@@ -75,14 +74,6 @@ public class Annoucement {
 
     public void setRented(Boolean rented) {
         Rented = rented;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Parking getParking() {

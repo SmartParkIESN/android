@@ -12,8 +12,8 @@ public class Parking {
     String Number;
     String Picture;
     String Description;
-    int Longitude;
-    int Latitude;
+    double Longitude;
+    double Latitude;
     Place place;
     User user;
 
@@ -29,6 +29,16 @@ public class Parking {
         this.place = place;
         this.user = user;
     }
+    public Parking(String name, String street, String number, String picture, String description, Place place, User user) {
+        Name = name;
+        Street = street;
+        Number = number;
+        Picture = picture;
+        Description = description;
+        this.place = place;
+        this.user = user;
+    }
+
 
     public int getId() {
         return Id;
@@ -78,19 +88,19 @@ public class Parking {
         Description = description;
     }
 
-    public int getLongitude() {
+    public double getLongitude() {
         return Longitude;
     }
 
-    public void setLongitude(int longitude) {
+    public void setLongitude(double longitude) {
         Longitude = longitude;
     }
 
-    public int getLatitude() {
+    public double getLatitude() {
         return Latitude;
     }
 
-    public void setLatitude(int latitude) {
+    public void setLatitude(double latitude) {
         Latitude = latitude;
     }
 

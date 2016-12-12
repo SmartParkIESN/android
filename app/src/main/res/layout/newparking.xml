@@ -5,10 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_newparking"
-    tools:context="com.henallux.projet.smartpark.business.NewParking"
-    android:paddingLeft="10dip"
-    android:paddingRight="50dip"
-    android:paddingTop="50dip">
+    tools:context="com.henallux.projet.smartpark.business.NewParking">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp">
+
+            <TableRow>
+                <TextView
+                    android:text="@string/createParkingTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal|bold"
+                    android:fontFamily="sans-serif"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="10dp"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:text="@string/createParkingTitle"
+                    android:padding="10dp"
+                    android:gravity="right"/>
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/CreateParkingTitle"
+                    android:layout_width="wrap_content"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:text="@string/createParkingDescription"
+                    android:padding="10dp"
+                    android:gravity="right"/>
+                <EditText
+                    android:layout_height="80dp"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/CreateParkingDescription"
+                    android:layout_width="wrap_content"/>
+            </TableRow>
+        <TableRow>
+            <TextView
+                android:text="@string/createParkingStreet"
+                android:padding="10dp"
+                android:gravity="right"/>
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/CreateParkingStreet"
+                android:layout_width="wrap_content"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="@string/createParkingNumber"
+                android:padding="10dp"
+                android:gravity="right"/>
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/CreateParkingNumber"
+                android:layout_width="wrap_content"/>
+        </TableRow>
+        <Button
+            android:text="@string/createTxt"
+            android:id="@+id/createParkingButton"
+            android:textStyle="normal|bold"
+            android:layout_marginTop="60dp"
+            android:textColor="@android:color/holo_blue_dark" />
+
+
+
+        </TableLayout>
 
 
 

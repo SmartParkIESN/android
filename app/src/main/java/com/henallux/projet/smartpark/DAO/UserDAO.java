@@ -112,6 +112,27 @@ public class UserDAO {
 
     }
 
+    public boolean modifyUser(User user) throws Exception
+    {
+        int responseCode= 0;
+        URL url = new URL("http://smartpark1.azurewebsites.net/api/Users");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("PUT");
+        connection.setRequestProperty("Content-type", "application/json");
+        connection.setDoOutput(true);
+        OutputStream outputStream = connection.getOutputStream();
+        OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+        connection.connect();
+        writer.write(userToJson(user));
+        writer.flush();
+        responseCode = connection.getResponseCode();
+        writer.close();
+        outputStream.close();
+        connection.disconnect();
+
+        return true;
+    }
+
 
 
 }
