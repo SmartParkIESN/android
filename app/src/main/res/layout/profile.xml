@@ -1,9 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:id="@+id/activity_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.henallux.projet.smartpark.business.Profile">
+    tools:context="com.henallux.projet.smartpark.business.Profile"
+    android:paddingLeft="10dip"
+    android:paddingRight="50dip"
+    android:paddingTop="50dip"
+    android:stretchColumns="1">
 
-</RelativeLayout>
+    <TableRow>
+        <TextView
+            android:text="@string/profileTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal|bold"
+            android:fontFamily="sans-serif"
+            android:textSize="20sp"
+            android:gravity="right"
+            android:layout_marginBottom="10dp"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="@string/signUpPassTxt"
+            android:padding="10dp"
+            android:gravity="right"/>
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/profilePassword"
+            android:layout_width="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="@string/signUpPassConfTxt"
+            android:padding="10dp"
+            android:gravity="right"/>
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/profilePassConf"
+            android:layout_width="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="@string/signUpMailTxt"
+            android:padding="10dp"
+            android:gravity="right"/>
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/profileMail"
+            android:layout_width="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="@string/signUpTelTxt"
+            android:padding="10dp"
+            android:gravity="right"/>
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/profileTel"
+            android:layout_width="wrap_content"/>
+    </TableRow>
+
+    <Button
+        android:text="@string/modifyTxt"
+        android:id="@+id/modifyButton"
+        android:textStyle="normal|bold"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="100dp"
+        android:textColor="@android:color/holo_blue_dark" />
+
+
+</TableLayout>

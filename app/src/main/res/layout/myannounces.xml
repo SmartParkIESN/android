@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_myannounces"
+    tools:context="com.henallux.projet.smartpark.business.MyAnnounces"
+    android:paddingLeft="10dip"
+    android:paddingRight="50dip"
+    android:paddingTop="50dip">
+
+</LinearLayout>

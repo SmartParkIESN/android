@@ -27,36 +27,33 @@ public class SignIn extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.signin);
-        TextView Connexion = (TextView) findViewById(R.id.SignInCoTxt);
-        Connexion.setText("");
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.signin);
 
 
-        //CLICK SIGN UP
-        SignUpBtt = (Button) findViewById(R.id.signUpButton);
-        SignUpBtt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), SignUp.class);
-                startActivity(intent);
-            }
-        });
+            //CLICK SIGN UP
+            SignUpBtt = (Button) findViewById(R.id.signUpButton);
+            SignUpBtt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), SignUp.class);
+                    startActivity(intent);
+                }
+            });
 
-        //CLICK SIGN IN
-        SignInbt = (Button) findViewById(R.id.signInButton);
-        SignInbt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText editPseudo = (EditText) findViewById(R.id.loginPseudo);
-                EditText editPassword = (EditText) findViewById(R.id.loginPassword);
-                String pseudo = editPseudo.getText().toString();
-                String password = editPassword.getText().toString();
-                TextView Connexion = (TextView) findViewById(R.id.SignInCoTxt);
-                Connexion.setText("Process ...");
-                new logIn().execute(pseudo, password);
-            }
-        });
+            //CLICK SIGN IN
+            SignInbt = (Button) findViewById(R.id.signInButton);
+            SignInbt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EditText editPseudo = (EditText) findViewById(R.id.loginPseudo);
+                    EditText editPassword = (EditText) findViewById(R.id.loginPassword);
+                    String pseudo = editPseudo.getText().toString();
+                    String password = editPassword.getText().toString();
+                    new logIn().execute(pseudo, password);
+                }
+            });
+
     }
 
     private class logIn extends AsyncTask<String, Void, Boolean>
@@ -86,14 +83,10 @@ public class SignIn extends AppCompatActivity {
             {
                 Intent intent = new Intent(SignIn.this, Welcome.class);
                 startActivity(intent);
-                TextView Connexion = (TextView) findViewById(R.id.SignInCoTxt);
-                Connexion.setText("");
             }
             else
             {
                 Toast.makeText(SignIn.this, "Connexion impossible", Toast.LENGTH_SHORT).show();
-                TextView Connexion = (TextView) findViewById(R.id.SignInCoTxt);
-                Connexion.setText("");
             }
 
         }

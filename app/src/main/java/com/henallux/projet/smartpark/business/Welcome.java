@@ -30,10 +30,35 @@ public class Welcome extends AppCompatActivity {
 
     @Override public boolean onOptionsItemSelected(MenuItem item)
     {
+        Intent intent;
         switch (item.getItemId())
         {
             case R.id.menu_Profil:
-                Intent intent = new Intent(Welcome.this, Profile.class);
+                intent = new Intent(Welcome.this, Profile.class);
+                startActivity(intent);
+                return true;
+            case R.id.menu_logOut:
+                UserConnected userConnected = new UserConnected().getINSTANCE();
+                userConnected.setConnected(false);
+                userConnected.setUser(null);
+
+                intent = new Intent(Welcome.this, SignIn.class);
+                startActivity(intent);
+                return true;
+            case R.id.menu_myAnnounce:
+                intent = new Intent(Welcome.this, MyAnnounces.class);
+                startActivity(intent);
+                return true;
+            case R.id.menu_createAnnouncement:
+                intent = new Intent(Welcome.this, NewAnnoucement.class);
+                startActivity(intent);
+                return true;
+            case R.id.menu_createParking:
+                intent = new Intent(Welcome.this, NewParking.class);
+                startActivity(intent);
+                return true;
+            case R.id.menu_search:
+                intent = new Intent(Welcome.this, Search.class);
                 startActivity(intent);
                 return true;
             default:

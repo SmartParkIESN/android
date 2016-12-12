@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:label="Sign in" android:name=".business.SignIn">
+        <activity android:label="SmartPark" android:name=".business.SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,6 +18,10 @@
         <activity  android:label="Sign Up" android:parentActivityName=".business.SignIn" android:name=".business.SignUp"></activity>
         <activity android:label="Main"  android:name=".business.Welcome"></activity>
         <activity  android:label="Profile " android:parentActivityName=".business.Welcome" android:name=".business.Profile"></activity>
+        <activity  android:label="New Parking " android:parentActivityName=".business.Welcome" android:name=".business.NewParking"></activity>
+        <activity  android:label="New Annoucement " android:parentActivityName=".business.Welcome" android:name=".business.NewAnnoucement"></activity>
+        <activity  android:label="My Announces " android:parentActivityName=".business.Welcome" android:name=".business.MyAnnounces"></activity>
+        <activity  android:label="Search " android:parentActivityName=".business.Welcome" android:name=".business.Search"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 

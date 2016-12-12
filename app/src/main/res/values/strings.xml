@@ -12,4 +12,6 @@
     <string name="signUpPassConfTxt">Password conf. :</string>
     <string name="signUpTelTxt">Phone number :</string>
     <string name="signUpTxt">Sign up</string>
+    <string name="profileTxt">Profile</string>
+    <string name="modifyTxt">Modify</string>
 </resources>

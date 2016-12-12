@@ -12,6 +12,7 @@ import java.net.*;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
+import com.henallux.projet.smartpark.business.UserConnected;
 import com.henallux.projet.smartpark.modele.User;
 
 
@@ -25,12 +26,14 @@ public class UserDAO {
     public Boolean signIn(String pseudo, String password) throws Exception
     {
         User user = getUser(pseudo);
-        Log.d("Password enter", password);
-        Log.d("Password user", user.getPassword());
         if(user != null)
         {
             if(password.equals(user.getPassword()))
             {
+                UserConnected userConnected = new UserConnected().getINSTANCE();
+                userConnected.setConnected(true);
+                userConnected.setLastAction();
+                userConnected.setUser(user);
                 return true;
             }
             else
