@@ -7,7 +7,7 @@ import java.util.Date;
  * Created by LucasF on 06-12-16.
  */
 
-public class Annoucement {
+public class Announcement {
 
     int Id;
     String Title;
@@ -17,7 +17,12 @@ public class Annoucement {
     Boolean Rented;
     Parking parking;
 
-    public Annoucement(int i, String t, int p, Date df, Date dt, Boolean r, Parking pk)
+    public Announcement()
+    {
+
+    }
+
+    public Announcement(int i, String t, int p, Date df, Date dt, Boolean r, Parking pk)
     {
         Id = i;
         Title = t;

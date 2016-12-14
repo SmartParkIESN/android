@@ -89,6 +89,27 @@ public class UserDAO {
 
     }
 
+    public User getUserById(int id) throws Exception
+    {
+
+        String URL = "http://smartpark1.azurewebsites.net/api/Users/" + id;
+        URL url = new URL(URL);
+        URLConnection connection = url.openConnection();
+        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        String stringJson = "", line;
+        while((line = br.readLine()) != null)
+        {
+            sb.append(line);
+
+        }
+        br.close();
+        stringJson = sb.toString();
+
+        return jsonToUser(stringJson);
+
+    }
+
     public <T> String userToJson(T user)
     {
         Gson gson = new Gson();

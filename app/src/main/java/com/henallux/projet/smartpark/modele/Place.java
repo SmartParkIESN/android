@@ -9,6 +9,11 @@ public class Place {
     int Id;
     String Name;
 
+    public Place()
+    {
+
+    }
+
     public Place(int id, String name) {
         Id = id;
         Name = name;

@@ -8,10 +8,10 @@ public class Reporting {
 
     int Id;
     Date date;
-    Annoucement Annouce;
+    Announcement Annouce;
     User user;
 
-    public Reporting(int id, Date date, Annoucement annouce, User user) {
+    public Reporting(int id, Date date, Announcement annouce, User user) {
         Id = id;
         this.date = date;
         Annouce = annouce;
@@ -34,11 +34,11 @@ public class Reporting {
         this.date = date;
     }
 
-    public Annoucement getAnnouce() {
+    public Announcement getAnnouce() {
         return Annouce;
     }
 
-    public void setAnnouce(Annoucement annouce) {
+    public void setAnnouce(Announcement annouce) {
         Annouce = annouce;
     }
 

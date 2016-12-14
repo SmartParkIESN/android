@@ -1,7 +1,7 @@
 package com.henallux.projet.smartpark.controller;
 
 import com.henallux.projet.smartpark.DAO.AnnoucementDAO;
-import com.henallux.projet.smartpark.modele.Annoucement;
+import com.henallux.projet.smartpark.modele.Announcement;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class AnnoucementController {
         annoucementDAO = new AnnoucementDAO();
     }
 
-    public ArrayList<Annoucement> getAllAnnoucements() throws Exception
+    public ArrayList<Announcement> getAllAnnoucements() throws Exception
     {
         return annoucementDAO.getAllAnnoucements();
     }

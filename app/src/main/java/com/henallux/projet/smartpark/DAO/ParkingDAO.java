@@ -34,6 +34,9 @@ public class ParkingDAO {
         parking.setLatitude(position[0]);
         parking.setLongitude(position[1]);
 
+        Log.d("Test", "" + parking.getUser().getId());
+        Log.d("Test2", "" + parking.getUserId());
+
         int responseCode= 0;
         URL url = new URL("http://smartpark1.azurewebsites.net/api/Parkings");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -51,6 +54,48 @@ public class ParkingDAO {
         connection.disconnect();
 
     }
+    public Parking getParkingById(int id) throws Exception
+    {
+
+        String URL = "http://smartpark1.azurewebsites.net/api/Parkings/" + id;
+        URL url = new URL(URL);
+        URLConnection connection = url.openConnection();
+        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        String stringJson = "", line;
+        while((line = br.readLine()) != null)
+        {
+            sb.append(line);
+
+        }
+        br.close();
+        stringJson = sb.toString();
+
+        return jsonToParking(stringJson);
+
+    }
+
+    private Parking jsonToParking(String stringJson) throws Exception
+    {
+
+        Parking parking = new Parking();
+
+        JSONObject jsonParking = new JSONObject(stringJson);
+        parking.setId(jsonParking.getInt("ParkingId"));
+        parking.setDescription(jsonParking.getString("Description"));
+        parking.setLatitude(jsonParking.getDouble("Latitude"));
+        parking.setLongitude(jsonParking.getDouble("Longitude"));
+        parking.setName(jsonParking.getString("Name"));
+        parking.setNumber(jsonParking.getString("Number"));
+        parking.setPicture(jsonParking.getString("Picture"));
+        parking.setPlaceId(jsonParking.getInt("PlaceId"));
+        parking.setStreet(jsonParking.getString("Street"));
+        parking.setUserId(jsonParking.getInt("UserId"));
+
+        return parking;
+
+    }
+
 
     public <T> String parkingToJson(T parking)
     {

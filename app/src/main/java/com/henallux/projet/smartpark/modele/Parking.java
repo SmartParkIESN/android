@@ -19,6 +19,11 @@ public class Parking {
     Place place;
     User user;
 
+    public Parking()
+    {
+
+    }
+
     public Parking(int id, String name, String street, String number, String picture, String description, int longitude, int latitude, int idPlace, int idUser, Place place, User user) {
         ParkingId = id;
         Name = name;

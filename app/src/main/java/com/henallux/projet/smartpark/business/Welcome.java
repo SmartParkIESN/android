@@ -1,22 +1,19 @@
 package com.henallux.projet.smartpark.business;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.henallux.projet.smartpark.R;
 import com.henallux.projet.smartpark.controller.AnnoucementController;
-import com.henallux.projet.smartpark.modele.Annoucement;
+import com.henallux.projet.smartpark.modele.Announcement;
 
 import java.util.ArrayList;
 
@@ -41,13 +38,13 @@ public class Welcome extends AppCompatActivity {
         new loadAnnoucements().execute();
     }
 
-    private class loadAnnoucements extends AsyncTask<String, Void, ArrayList<Annoucement>>
+    private class loadAnnoucements extends AsyncTask<String, Void, ArrayList<Announcement>>
     {
 
         @Override
-        protected ArrayList<Annoucement> doInBackground(String... log) {
+        protected ArrayList<Announcement> doInBackground(String... log) {
 
-            ArrayList<Annoucement> annoucements = new ArrayList<>();
+            ArrayList<Announcement> annoucements = new ArrayList<>();
             AnnoucementController annoucementsController = new AnnoucementController();
 
             try
@@ -63,12 +60,12 @@ public class Welcome extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Annoucement> annoucements)
+        protected void onPostExecute(ArrayList<Announcement> annoucements)
         {
             ListView listAnnounces;
             listAnnounces = (ListView) findViewById(R.id.listAnnounces);
 
-            ArrayAdapter<Annoucement> adapter = new ArrayAdapter<Annoucement>(Welcome.this, android.R.layout.simple_list_item_1, annoucements);
+            ArrayAdapter<Announcement> adapter = new ArrayAdapter<Announcement>(Welcome.this, android.R.layout.simple_list_item_1, annoucements);
             listAnnounces.setAdapter(adapter);
         }
     }

@@ -1,8 +1,6 @@
 package com.henallux.projet.smartpark.DAO;
 
-import android.util.Log;
-
-import com.henallux.projet.smartpark.modele.Annoucement;
+import com.henallux.projet.smartpark.modele.Announcement;
 import com.henallux.projet.smartpark.modele.Parking;
 import com.henallux.projet.smartpark.modele.Place;
 import com.henallux.projet.smartpark.modele.User;
@@ -29,7 +27,7 @@ public class AnnoucementDAO {
 
     }
 
-    public ArrayList<Annoucement> getAllAnnoucements() throws Exception
+    public ArrayList<Announcement> getAllAnnoucements() throws Exception
     {
         String URL = "http://smartpark1.azurewebsites.net/api/Announcements";
         java.net.URL url = new URL(URL);
@@ -47,11 +45,11 @@ public class AnnoucementDAO {
         return jsonToAnnoucements(stringJson);
     }
 
-    private ArrayList<Annoucement> jsonToAnnoucements(String stringJson) throws Exception
+    private ArrayList<Announcement> jsonToAnnoucements(String stringJson) throws Exception
     {
 
-        ArrayList<Annoucement> annoucements = new ArrayList<>();
-        Annoucement announcement;
+        ArrayList<Announcement> annoucements = new ArrayList<>();
+        Announcement announcement;
         Parking parking;
         User user;
         Place place;
@@ -59,19 +57,27 @@ public class AnnoucementDAO {
         Date dateFrom;
         Date dateTo;
 
+        ParkingDAO parkingDAO = new ParkingDAO();
+        PlaceDAO placeDAO = new PlaceDAO();
+        UserDAO userDAO = new UserDAO();
+
         JSONArray jsonArray = new JSONArray(stringJson);
 
         for(int i=0; i<jsonArray.length();i++)
         {
-            JSONObject jsonAnnoucement = jsonArray.getJSONObject(i);
-            user = new User(jsonAnnoucement.getJSONObject("User").getInt("Id"), jsonAnnoucement.getJSONObject("User").getString("Pseudo"), jsonAnnoucement.getJSONObject("User").getString("Email"), jsonAnnoucement.getJSONObject("User").getString("Password"), jsonAnnoucement.getJSONObject("User").getString("PhoneNumber"));
-            place = new Place(jsonAnnoucement.getJSONObject("Parking").getJSONObject("Place").getInt("Id"), jsonAnnoucement.getJSONObject("Parking").getJSONObject("Place").getString("Name"));
-            parking = new Parking(jsonAnnoucement.getJSONObject("Parking").getInt("Id"), jsonAnnoucement.getJSONObject("Parking").getString("Name"), jsonAnnoucement.getJSONObject("Parking").getString("Street"), jsonAnnoucement.getJSONObject("Parking").getString("Number"), jsonAnnoucement.getJSONObject("Parking").getString("Picture"), jsonAnnoucement.getJSONObject("Parking").getString("Description"), jsonAnnoucement.getJSONObject("Parking").getInt("Longitude"), jsonAnnoucement.getJSONObject("Parking").getInt("Latitude"), place.getId(), user.getId(), place, user);
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            dateFrom = formatter.parse(jsonAnnoucement.getString("DateFrom"));
-            dateTo = formatter.parse(jsonAnnoucement.getString("DateTo"));
-            announcement = new Annoucement(jsonAnnoucement.getInt("Id"), jsonAnnoucement.getString("Title"), jsonAnnoucement.getInt("Price"), dateFrom, dateTo, jsonAnnoucement.getBoolean("Rented"), parking);
+            JSONObject jsonAnnouncement = jsonArray.getJSONObject(i);
 
+            parking = parkingDAO.getParkingById(jsonAnnouncement.getInt("ParkingId"));
+            user = userDAO.getUserById(parking.getUserId());
+            place = placeDAO.getPlaceById(parking.getPlaceId());
+
+            parking.setPlace(place);
+            parking.setUser(user);
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            dateFrom = formatter.parse(jsonAnnouncement.getString("DateFrom"));
+            dateTo = formatter.parse(jsonAnnouncement.getString("DateTo"));
+            announcement = new Announcement(jsonAnnouncement.getInt("AnnouncementId"), jsonAnnouncement.getString("Title"), jsonAnnouncement.getInt("Price"), dateFrom, dateTo, jsonAnnouncement.getBoolean("Rented"), parking);
             annoucements.add(announcement);
         }
 
