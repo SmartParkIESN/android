@@ -6,7 +6,7 @@ package com.henallux.projet.smartpark.modele;
 
 public class User {
 
-    private int id;
+    private int UserId;
     private String pseudo;
     private String email;
     private String password;
@@ -18,7 +18,7 @@ public class User {
     }
 
     public User(int id, String pseudo, String email, String password, String phonenumber) {
-        this.id = id;
+        this.UserId = id;
         this.pseudo = pseudo;
         this.email = email;
         this.password = password;
@@ -33,7 +33,7 @@ public class User {
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.UserId = id;
     }
 
     public void setPseudo(String pseudo) {
@@ -53,7 +53,7 @@ public class User {
     }
 
     public int getId() {
-        return id;
+        return UserId;
     }
 
     public String getPseudo() {

@@ -2,27 +2,51 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.henallux.projet.smartpark">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:label="SmartPark" android:name=".business.SignIn">
+        <activity
+            android:name=".business.SignIn"
+            android:label="SmartPark">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity  android:label="Sign Up" android:parentActivityName=".business.SignIn" android:name=".business.SignUp"></activity>
-        <activity android:label="Main"  android:name=".business.Welcome"></activity>
-        <activity  android:label="Profile " android:parentActivityName=".business.Welcome" android:name=".business.Profile"></activity>
-        <activity  android:label="New Parking " android:parentActivityName=".business.Welcome" android:name=".business.NewParking"></activity>
-        <activity  android:label="New Annoucement " android:parentActivityName=".business.Welcome" android:name=".business.NewAnnoucement"></activity>
-        <activity  android:label="My Announces " android:parentActivityName=".business.Welcome" android:name=".business.MyAnnounces"></activity>
-        <activity  android:label="Search " android:parentActivityName=".business.Welcome" android:name=".business.Search"></activity>
+        <activity
+            android:name=".business.SignUp"
+            android:label="Sign Up"
+            android:parentActivityName=".business.SignIn" />
+        <activity
+            android:name=".business.Welcome"
+            android:label="SmartPark" />
+        <activity
+            android:name=".business.Profile"
+            android:label="Profile "
+            android:parentActivityName=".business.Welcome" />
+        <activity
+            android:name=".business.NewParking"
+            android:label="New Parking "
+            android:parentActivityName=".business.Welcome" />
+        <activity
+            android:name=".business.NewAnnoucement"
+            android:label="New Annoucement "
+            android:parentActivityName=".business.Welcome" />
+        <activity
+            android:name=".business.MyAnnounces"
+            android:label="My Announces "
+            android:parentActivityName=".business.Welcome" />
+        <activity
+            android:name=".business.Search"
+            android:label="Search "
+            android:parentActivityName=".business.Welcome" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

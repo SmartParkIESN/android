@@ -1,13 +1,14 @@
 package com.henallux.projet.smartpark.business;
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ import org.w3c.dom.Text;
 
 import static android.R.attr.duration;
 
-public class SignIn extends AppCompatActivity {
+public class SignIn extends Activity {
 
     private Button SignUpBtt;
     private Button SignInbt;

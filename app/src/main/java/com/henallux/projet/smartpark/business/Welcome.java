@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -28,6 +30,12 @@ public class Welcome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
+
+        UserConnected userConnected = new UserConnected().getINSTANCE();
+        View view = findViewById(R.id.activity_main);
+
+        Snackbar snackbar = Snackbar.make(view, "Bienvenue " + userConnected.getUserConnected().getPseudo(), Snackbar.LENGTH_LONG);
+        snackbar.show();
 
 
         new loadAnnoucements().execute();
@@ -62,8 +70,6 @@ public class Welcome extends AppCompatActivity {
 
             ArrayAdapter<Annoucement> adapter = new ArrayAdapter<Annoucement>(Welcome.this, android.R.layout.simple_list_item_1, annoucements);
             listAnnounces.setAdapter(adapter);
-
-            Toast.makeText(Welcome.this, "Chargé !", Toast.LENGTH_SHORT).show();
         }
     }
 

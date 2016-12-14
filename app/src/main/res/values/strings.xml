@@ -21,4 +21,8 @@
     <string name="createParkingStreet">Street</string>
     <string name="createParkingNumber">Number</string>
     <string name="createTxt">Create</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

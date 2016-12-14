@@ -14,12 +14,13 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:src="@mipmap/smartparklogo"/>
+        android:src="@mipmap/smartparklogo"
+        android:layout_marginTop="50dp"/>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="200dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
         <TableRow

@@ -6,7 +6,7 @@ package com.henallux.projet.smartpark.modele;
 
 public class Parking {
 
-    int Id;
+    int ParkingId;
     String Name;
     String Street;
     String Number;
@@ -14,11 +14,13 @@ public class Parking {
     String Description;
     double Longitude;
     double Latitude;
+    int placeId;
+    int userId;
     Place place;
     User user;
 
-    public Parking(int id, String name, String street, String number, String picture, String description, int longitude, int latitude, Place place, User user) {
-        Id = id;
+    public Parking(int id, String name, String street, String number, String picture, String description, int longitude, int latitude, int idPlace, int idUser, Place place, User user) {
+        ParkingId = id;
         Name = name;
         Street = street;
         Number = number;
@@ -26,26 +28,30 @@ public class Parking {
         Description = description;
         Longitude = longitude;
         Latitude = latitude;
+        placeId = idPlace;
+        userId = idUser;
         this.place = place;
         this.user = user;
     }
-    public Parking(String name, String street, String number, String picture, String description, Place place, User user) {
+    public Parking(String name, String street, String number, String picture, String description, int idPlace, int idUser, Place place, User user) {
         Name = name;
         Street = street;
         Number = number;
         Picture = picture;
         Description = description;
+        placeId = idPlace;
+        userId = idUser;
         this.place = place;
         this.user = user;
     }
 
 
     public int getId() {
-        return Id;
+        return ParkingId;
     }
 
     public void setId(int id) {
-        Id = id;
+        ParkingId = id;
     }
 
     public String getName() {
@@ -119,4 +125,21 @@ public class Parking {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public int getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(int placeId) {
+        this.placeId = placeId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
 }
