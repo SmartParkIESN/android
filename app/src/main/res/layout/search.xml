@@ -7,7 +7,52 @@
     android:id="@+id/activity_search"
     tools:context="com.henallux.projet.smartpark.business.Search"
     android:paddingLeft="10dip"
-    android:paddingRight="50dip"
-    android:paddingTop="50dip">
+    android:paddingRight="50dip">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:text="@string/searchTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal|bold"
+            android:fontFamily="sans-serif"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"/>
+        <TableRow>
+            <TextView
+                android:text="@string/priceFromTxt"
+                android:padding="10dp" />
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/SearchPriceFrom"
+                android:layout_width="wrap_content"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="@string/priceToTxt"
+                android:padding="10dp" />
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/SearchPriceTo"
+                android:layout_width="wrap_content"/>
+        </TableRow>
+        <Button
+            android:text="@string/searchTxt"
+            android:id="@+id/searchButton"
+            android:textStyle="normal|bold"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@android:color/holo_blue_dark" />
+    </TableLayout>
 
 </LinearLayout>

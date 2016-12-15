@@ -1,10 +1,13 @@
 package com.henallux.projet.smartpark.business;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -76,12 +79,16 @@ public class ViewAnnouncement extends AppCompatActivity implements OnMapReadyCal
             TextView priceTextView =
                     (TextView) findViewById(R.id.ViewAnnoucementPrice);
 
+            TextView addressTextView =
+                    (TextView) findViewById(R.id.ViewAnnoucementAddress);
+
             ImageView parkingImage =
                     (ImageView) findViewById(R.id.ViewAnnouncementParkingPhoto);
 
             titleTextView.setText(announcement.getTitle());
             descriptionTextView.setText(announcement.getParking().getDescription());
             priceTextView.setText("" + announcement.getPrice() + "eu/h");
+            addressTextView.setText(announcement.getParking().getPlace().getName() + " " + announcement.getParking().getNumber() + " " + announcement.getParking().getStreet());
             parkingImage.setImageResource(R.drawable.place);
 
 
@@ -97,5 +104,32 @@ public class ViewAnnouncement extends AppCompatActivity implements OnMapReadyCal
         LatLng parking = new LatLng(50.4673883, 4.871985399999971);
         mMap.addMarker(new MarkerOptions().position(parking).title(announcementGlob.getParking().getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(parking));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menuannouncement, menu);
+        return true;
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item)
+    {
+        Intent intent;
+        switch (item.getItemId())
+        {
+            case R.id.menuAnnoucement_call:
+                android.net.Uri uri = Uri.parse("tel:" + announcementGlob.getParking().getUser().getPhonenumber());
+                intent = new Intent(Intent.ACTION_DIAL, uri);
+                startActivity(intent);
+                return true;
+            case R.id.menuAnnoucement_mail:
+                intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:" + announcementGlob.getParking().getUser().getEmail()));
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }

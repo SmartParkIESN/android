@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/menuAnnoucement_mail"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_email"
+        android:title="@string/menuAnnoucement_mail" />
+    <item
+        android:id="@+id/menuAnnoucement_call"
+        app:showAsAction="always"
+        android:title="@string/menuAnnoucement_call"
+        android:icon="@drawable/ic_phone" />
+</menu>

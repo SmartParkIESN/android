@@ -37,4 +37,9 @@
     <string name="pick_dateTo">Date to</string>
     <string name="createAnnoucementPrice">Price</string>
     <string name="title_activity_maps">Map</string>
+    <string name="menuAnnoucement_mail">Send mail</string>
+    <string name="menuAnnoucement_call">Call</string>
+    <string name="searchTxt">Search</string>
+    <string name="priceFromTxt">Price from</string>
+    <string name="priceToTxt">to</string>
 </resources>
