@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Announcement {
 
-    int Id;
+    int AnnouncementId;
     String Title;
     int Price;
     Date DateFrom;
@@ -24,7 +24,7 @@ public class Announcement {
 
     public Announcement(int i, String t, int p, Date df, Date dt, Boolean r, Parking pk)
     {
-        Id = i;
+        AnnouncementId = i;
         Title = t;
         Price = p;
         DateFrom = df;
@@ -34,11 +34,11 @@ public class Announcement {
     }
 
     public int getId() {
-        return Id;
+        return AnnouncementId;
     }
 
     public void setId(int id) {
-        Id = id;
+        AnnouncementId = id;
     }
 
     public String getTitle() {

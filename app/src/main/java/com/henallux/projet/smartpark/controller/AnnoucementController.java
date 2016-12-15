@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 
 public class AnnoucementController {
+
     private AnnoucementDAO annoucementDAO;
 
     public AnnoucementController()
@@ -20,6 +21,11 @@ public class AnnoucementController {
     public ArrayList<Announcement> getAllAnnoucements() throws Exception
     {
         return annoucementDAO.getAllAnnoucements();
+    }
+
+    public Announcement getPlaceById(String id) throws Exception
+    {
+        return annoucementDAO.getPlaceById(id);
     }
 
 }

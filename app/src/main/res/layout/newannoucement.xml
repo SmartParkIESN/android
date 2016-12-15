@@ -5,9 +5,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_newannoucement"
-    tools:context="com.henallux.projet.smartpark.business.NewAnnoucement"
-    android:paddingLeft="10dip"
-    android:paddingRight="50dip"
-    android:paddingTop="50dip">
+    tools:context="com.henallux.projet.smartpark.business.NewAnnoucement">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:text="@string/createAnnoucementTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal|bold"
+            android:fontFamily="sans-serif"
+            android:textSize="17sp"
+            android:layout_marginBottom="10dp"/>
+        <TableRow>
+            <TextView
+                android:text="@string/createAnnoucementTitle"
+                android:padding="10dp"
+                android:gravity="left"/>
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/CreateAnnoucementTitle"
+                android:layout_width="wrap_content"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="@string/createAnnoucementdateFrom"
+                android:padding="10dp"
+                android:gravity="left"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pick_dateFrom"
+                android:onClick="showDatePickerFromDialog" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="@string/createAnnoucementdateTo"
+                android:padding="10dp"
+                android:gravity="left"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pick_dateTo"
+                android:onClick="showDatePickerToDialog" />
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="@string/createAnnoucementPrice"
+                android:padding="10dp"
+                android:gravity="left"/>
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/CreateParkingPrice"
+                android:layout_width="wrap_content"/>
+        </TableRow>
+        <Button
+            android:text="@string/createTxt"
+            android:id="@+id/createAnnoucementButton"
+            android:textStyle="normal|bold"
+            android:layout_marginTop="60dp"
+            android:textColor="@android:color/holo_blue_dark" />
+
+
+
+    </TableLayout>
 
 </LinearLayout>

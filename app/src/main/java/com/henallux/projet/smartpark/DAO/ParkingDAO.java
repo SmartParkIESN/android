@@ -34,9 +34,6 @@ public class ParkingDAO {
         parking.setLatitude(position[0]);
         parking.setLongitude(position[1]);
 
-        Log.d("Test", "" + parking.getUser().getId());
-        Log.d("Test2", "" + parking.getUserId());
-
         int responseCode= 0;
         URL url = new URL("http://smartpark1.azurewebsites.net/api/Parkings");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

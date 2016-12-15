@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -31,11 +32,9 @@ public class Welcome extends AppCompatActivity {
         UserConnected userConnected = new UserConnected().getINSTANCE();
         View view = findViewById(R.id.activity_main);
 
-        Snackbar snackbar = Snackbar.make(view, "Bienvenue " + userConnected.getUserConnected().getPseudo(), Snackbar.LENGTH_LONG);
-        snackbar.show();
-
 
         new loadAnnoucements().execute();
+
     }
 
     private class loadAnnoucements extends AsyncTask<String, Void, ArrayList<Announcement>>
@@ -64,9 +63,29 @@ public class Welcome extends AppCompatActivity {
         {
             ListView listAnnounces;
             listAnnounces = (ListView) findViewById(R.id.listAnnounces);
+            final ArrayList<Announcement> annoucementslist = annoucements;
 
-            ArrayAdapter<Announcement> adapter = new ArrayAdapter<Announcement>(Welcome.this, android.R.layout.simple_list_item_1, annoucements);
+            AnnoucementsAdapter adapter = new AnnoucementsAdapter(Welcome.this, annoucementslist);
             listAnnounces.setAdapter(adapter);
+
+            listAnnounces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    // 1
+                    Announcement selectedAnnouncement = annoucementslist.get(position);
+
+                    // 2
+                    Intent ViewAnnouncementIntent = new Intent(Welcome.this, ViewAnnouncement.class);
+
+                    // 3
+                    ViewAnnouncementIntent.putExtra("id", "" + selectedAnnouncement.getId());
+
+                    // 4
+                    startActivity(ViewAnnouncementIntent);
+                }
+
+            });
         }
     }
 
@@ -93,7 +112,7 @@ public class Welcome extends AppCompatActivity {
                 intent = new Intent(Welcome.this, SignIn.class);
                 startActivity(intent);
                 return true;
-            case R.id.menu_myAnnounce:
+            case R.id.menu_myAnnoucements:
                 intent = new Intent(Welcome.this, MyAnnounces.class);
                 startActivity(intent);
                 return true;

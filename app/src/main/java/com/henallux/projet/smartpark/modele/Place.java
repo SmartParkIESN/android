@@ -6,7 +6,7 @@ package com.henallux.projet.smartpark.modele;
 
 public class Place {
 
-    int Id;
+    int PlaceId;
     String Name;
 
     public Place()
@@ -15,16 +15,16 @@ public class Place {
     }
 
     public Place(int id, String name) {
-        Id = id;
+        PlaceId = id;
         Name = name;
     }
 
-    public int getId() {
-        return Id;
+    public int getPlaceId() {
+        return PlaceId;
     }
 
     public void setId(int id) {
-        Id = id;
+        PlaceId = id;
     }
 
     public String getName() {

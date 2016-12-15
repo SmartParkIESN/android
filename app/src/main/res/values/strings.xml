@@ -25,4 +25,16 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="menu_Parking">Parkings</string>
+    <string name="menu_myParking">My parking</string>
+    <string name="menu_Announcement">Announcements</string>
+    <string name="menu_myAnnoucements">My announcements</string>
+    <string name="createAnnoucementTxt">New annoucement</string>
+    <string name="createAnnoucementTitle">Title</string>
+    <string name="createAnnoucementdateFrom">From</string>
+    <string name="createAnnoucementdateTo">To</string>
+    <string name="pick_dateFrom">Date from</string>
+    <string name="pick_dateTo">Date to</string>
+    <string name="createAnnoucementPrice">Price</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

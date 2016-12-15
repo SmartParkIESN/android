@@ -7,10 +7,10 @@ package com.henallux.projet.smartpark.modele;
 public class User {
 
     private int UserId;
-    private String pseudo;
-    private String email;
-    private String password;
-    private String phonenumber;
+    private String Pseudo;
+    private String Email;
+    private String Password;
+    private String PhoneNumber;
 
     public  User()
     {
@@ -19,56 +19,56 @@ public class User {
 
     public User(int id, String pseudo, String email, String password, String phonenumber) {
         this.UserId = id;
-        this.pseudo = pseudo;
-        this.email = email;
-        this.password = password;
-        this.phonenumber = phonenumber;
+        this.Pseudo = pseudo;
+        this.Email = email;
+        this.Password = password;
+        this.PhoneNumber = phonenumber;
     }
 
     public User(String pseudo, String email, String password, String phonenumber) {
-        this.pseudo = pseudo;
-        this.email = email;
-        this.password = password;
-        this.phonenumber = phonenumber;
+        this.Pseudo = pseudo;
+        this.Email = email;
+        this.Password = password;
+        this.PhoneNumber = phonenumber;
     }
 
-    public void setId(int id) {
+    public void setUserId(int id) {
         this.UserId = id;
     }
 
     public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
+        this.Pseudo = pseudo;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.Password = password;
     }
 
     public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+        this.PhoneNumber = phonenumber;
     }
 
-    public int getId() {
+    public int getUserId() {
         return UserId;
     }
 
     public String getPseudo() {
-        return pseudo;
+        return Pseudo;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public String getPassword() {
-        return password;
+        return Password;
     }
 
     public String getPhonenumber() {
-        return phonenumber;
+        return PhoneNumber;
     }
 }

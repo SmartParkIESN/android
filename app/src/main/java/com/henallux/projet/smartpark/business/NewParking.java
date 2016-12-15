@@ -45,7 +45,7 @@ public class NewParking extends AppCompatActivity {
 
 
                 Place place = new Place(1, "Saint-Servais");
-                Parking parking = new Parking(editTitle.getText().toString(), editStreet.getText().toString(), editStreetNumber.getText().toString(), "none",  editDescription.getText().toString(), place.getId(), user.getId(), place, user);
+                Parking parking = new Parking(editTitle.getText().toString(), editStreet.getText().toString(), editStreetNumber.getText().toString(), "none",  editDescription.getText().toString(), place.getPlaceId(), user.getUserId(), place, user);
                 new postParking().execute(parking);
 
 

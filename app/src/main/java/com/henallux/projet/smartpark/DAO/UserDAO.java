@@ -123,20 +123,20 @@ public class UserDAO {
         User user = new User();
 
         JSONObject jsonUser = new JSONObject(stringJson);
-        user.setId(jsonUser.getInt("UserId"));
+        user.setUserId(jsonUser.getInt("UserId"));
         user.setPseudo(jsonUser.getString("Pseudo"));
         user.setPassword(jsonUser.getString("Password"));
         user.setEmail(jsonUser.getString("Email"));
         user.setPhonenumber(jsonUser.getString("PhoneNumber"));
 
         return user;
-
     }
 
     public boolean modifyUser(User user) throws Exception
     {
         int responseCode= 0;
-        URL url = new URL("http://smartpark1.azurewebsites.net/api/Users/" + user.getId());
+        URL url = new URL("http://smartpark1.azurewebsites.net/api/Users/" + user.getUserId());
+        Log.d("response code", "" + url);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Content-type", "application/json");
@@ -150,7 +150,7 @@ public class UserDAO {
         writer.close();
         outputStream.close();
         connection.disconnect();
-        Log.d("fezg", "" + responseCode);
+        Log.d("response code", "" + responseCode);
 
         return true;
     }

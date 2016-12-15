@@ -7,17 +7,26 @@
         app:showAsAction="never"
         android:title="@string/menu_search" />
     <item
-        android:id="@+id/menu_createParking"
         app:showAsAction="never"
-        android:title="@string/menu_createParking" />
+        android:title="@string/menu_Parking">
+        <menu>
+            <item android:id="@+id/menu_createParking"
+                android:title="@string/menu_createParking" />
+            <item android:id="@+id/menu_myParking"
+                android:title="@string/menu_myParking" />
+        </menu>
+    </item>
     <item
-        android:id="@+id/menu_createAnnouncement"
         app:showAsAction="never"
-        android:title="@string/menu_createAnnouncement" />
-    <item
-        android:id="@+id/menu_myAnnounce"
-        app:showAsAction="never"
-        android:title="@string/menu_myAnnounce" />
+        android:title="@string/menu_Announcement">
+
+        <menu>
+            <item android:id="@+id/menu_createAnnouncement"
+                android:title="@string/menu_createAnnouncement" />
+            <item android:id="@+id/menu_myAnnoucements"
+                android:title="@string/menu_myAnnoucements" />
+        </menu>
+    </item>
     <item
         android:id="@+id/menu_Profil"
         app:showAsAction="never"

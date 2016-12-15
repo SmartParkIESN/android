@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/listAnnouncesLayout"
+    android:padding="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/listAnnouncesParkingPhoto"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:background="#AAA"
+        />
+
+    <TextView
+        android:id="@+id/listAnnouncesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/listAnnouncesParkingPhoto"
+        android:layout_alignTop="@+id/listAnnouncesParkingPhoto"
+        android:textStyle="bold"
+        tools:text="Title"
+        />
+
+    <TextView
+        android:id="@+id/listAnnouncesDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_alignLeft="@+id/listAnnouncesTitle"
+        android:layout_below="@+id/listAnnouncesTitle"
+        tools:text="Description"
+        />
+
+    <TextView
+    android:id="@+id/listAnnouncesPrice"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@android:color/black"
+        android:layout_alignLeft="@+id/listAnnouncesTitle"
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="2dp"
+    tools:text="Price"
+    />
+
+</RelativeLayout>

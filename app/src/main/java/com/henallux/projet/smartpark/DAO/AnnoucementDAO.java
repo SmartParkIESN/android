@@ -45,6 +45,27 @@ public class AnnoucementDAO {
         return jsonToAnnoucements(stringJson);
     }
 
+    public Announcement getPlaceById(String id) throws Exception
+    {
+
+        String URL = "http://smartpark1.azurewebsites.net/api/Announcements/" + id;
+        URL url = new URL(URL);
+        URLConnection connection = url.openConnection();
+        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        String stringJson = "", line;
+        while((line = br.readLine()) != null)
+        {
+            sb.append(line);
+
+        }
+        br.close();
+        stringJson = sb.toString();
+
+        return jsonToAnnoucement(stringJson);
+
+    }
+
     private ArrayList<Announcement> jsonToAnnoucements(String stringJson) throws Exception
     {
 
@@ -82,5 +103,35 @@ public class AnnoucementDAO {
         }
 
         return annoucements;
+    }
+
+    private Announcement jsonToAnnoucement(String stringJson) throws Exception
+    {
+        Parking parking;
+        User user;
+        Place place;
+
+        Date dateFrom;
+        Date dateTo;
+
+        ParkingDAO parkingDAO = new ParkingDAO();
+        PlaceDAO placeDAO = new PlaceDAO();
+        UserDAO userDAO = new UserDAO();
+
+        JSONObject jsonAnnouncement = new JSONObject(stringJson);
+
+        parking = parkingDAO.getParkingById(jsonAnnouncement.getInt("ParkingId"));
+        user = userDAO.getUserById(parking.getUserId());
+        place = placeDAO.getPlaceById(parking.getPlaceId());
+
+        parking.setPlace(place);
+        parking.setUser(user);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        dateFrom = formatter.parse(jsonAnnouncement.getString("DateFrom"));
+        dateTo = formatter.parse(jsonAnnouncement.getString("DateTo"));
+        Announcement announcement = new Announcement(jsonAnnouncement.getInt("AnnouncementId"), jsonAnnouncement.getString("Title"), jsonAnnouncement.getInt("Price"), dateFrom, dateTo, jsonAnnouncement.getBoolean("Rented"), parking);
+
+        return announcement;
     }
 }
