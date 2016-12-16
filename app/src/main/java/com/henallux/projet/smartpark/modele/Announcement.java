@@ -16,13 +16,14 @@ public class Announcement {
     Date DateTo;
     Boolean Rented;
     Parking parking;
+    int parkingId;
 
     public Announcement()
     {
 
     }
 
-    public Announcement(int i, String t, int p, Date df, Date dt, Boolean r, Parking pk)
+    public Announcement(int i, String t, int p, Date df, Date dt, Boolean r, Parking pk, int pId)
     {
         AnnouncementId = i;
         Title = t;
@@ -31,6 +32,7 @@ public class Announcement {
         DateTo = dt;
         Rented = r;
         parking = pk;
+        parkingId = pId;
     }
 
     public int getId() {

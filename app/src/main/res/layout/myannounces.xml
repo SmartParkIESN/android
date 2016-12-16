@@ -5,9 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_myannounces"
-    tools:context="com.henallux.projet.smartpark.business.MyAnnounces"
-    android:paddingLeft="10dip"
-    android:paddingRight="50dip"
-    android:paddingTop="50dip">
+    tools:context="com.henallux.projet.smartpark.business.MyAnnounces">
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listMyAnnounces">
+    </ListView>
 
 </LinearLayout>

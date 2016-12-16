@@ -49,6 +49,16 @@
             </TableRow>
         <TableRow>
             <TextView
+                android:text="@string/createAnnoucementPlace"
+                android:padding="10dp"
+                android:gravity="left"/>
+            <Spinner
+                android:id="@+id/CreateAnnoucementPlace"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+        <TableRow>
+            <TextView
                 android:text="@string/createParkingStreet"
                 android:padding="10dp"
                 android:gravity="right"/>

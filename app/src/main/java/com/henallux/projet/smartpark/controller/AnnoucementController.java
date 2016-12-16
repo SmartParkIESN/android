@@ -23,9 +23,14 @@ public class AnnoucementController {
         return annoucementDAO.getAllAnnoucements();
     }
 
-    public Announcement getPlaceById(String id) throws Exception
+    public Announcement getAnnoucementById(String id) throws Exception
     {
-        return annoucementDAO.getPlaceById(id);
+        return annoucementDAO.getAnnoucementById(id);
     }
+    public ArrayList<Announcement> getAnnoucementByUserId(int UserId) throws Exception
+    {
+        return annoucementDAO.getAnnoucementByUserId(UserId);
+    }
+
 
 }

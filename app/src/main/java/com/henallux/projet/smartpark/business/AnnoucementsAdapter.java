@@ -76,7 +76,19 @@ public class AnnoucementsAdapter extends BaseAdapter {
         titleTextView.setText(announcement.getTitle());
         descriptionTextView.setText(announcement.getParking().getDescription());
         priceTextView.setText("" + announcement.getPrice() + "eu/h");
-        parkingImage.setImageResource(R.drawable.place);
+
+        if(announcement.getParking().getPicture().equals("1"))
+        {
+            parkingImage.setImageResource(R.drawable.place);
+        }
+        else if(announcement.getParking().getPicture().equals("2"))
+        {
+            parkingImage.setImageResource(R.drawable.place2);
+        }
+        else
+        {
+            parkingImage.setImageResource(R.drawable.place3);
+        }
 
         return rowView;
     }

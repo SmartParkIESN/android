@@ -42,4 +42,13 @@
     <string name="searchTxt">Search</string>
     <string name="priceFromTxt">Price from</string>
     <string name="priceToTxt">to</string>
+    <string name="createAnnoucementPlace">Place</string>
+
+    <string-array name="places">
+        <item>Namur</item>
+        <item>Saint-Servais</item>
+        <item>Bouge</item>
+        <item>Jambe</item>
+        <item>Salzinne</item>
+    </string-array>
 </resources>

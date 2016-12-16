@@ -9,10 +9,7 @@
     <TableLayout
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp">
+        android:layout_height="match_parent">
 
         <TextView
             android:text=""
@@ -22,31 +19,35 @@
             android:fontFamily="sans-serif"
             android:id="@+id/ViewAnnoucementTitle"
             android:textSize="23sp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="7dp"/>
         <TextView
             android:text=""
-            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/ViewAnnoucementPrice" />
 
         <TextView
             android:text=""
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:id="@+id/ViewAnnoucementAddress" />
 
         <TableRow>
             <ImageView
                 android:id="@+id/ViewAnnouncementParkingPhoto"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp"
                 tools:background="#AAA"
                 />
             <TextView
                 android:text=""
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="150dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="180dp"
                 android:id="@+id/ViewAnnoucementDescription" />
         </TableRow>
         <fragment
@@ -56,9 +57,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="com.henallux.projet.smartpark.business.ViewAnnouncement"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"/>
+            tools:context="com.henallux.projet.smartpark.business.ViewAnnouncement" />
 
 
 

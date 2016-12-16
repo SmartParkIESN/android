@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -55,7 +56,7 @@ public class ViewAnnouncement extends AppCompatActivity implements OnMapReadyCal
 
             try
             {
-                announcement = annoucementsController.getPlaceById(log[0]);
+                announcement = annoucementsController.getAnnoucementById(log[0]);
             }
             catch (Exception e)
             {
@@ -85,15 +86,31 @@ public class ViewAnnouncement extends AppCompatActivity implements OnMapReadyCal
             ImageView parkingImage =
                     (ImageView) findViewById(R.id.ViewAnnouncementParkingPhoto);
 
+
+
             titleTextView.setText(announcement.getTitle());
             descriptionTextView.setText(announcement.getParking().getDescription());
-            priceTextView.setText("" + announcement.getPrice() + "eu/h");
+            priceTextView.setText("Prix :" + announcement.getPrice() + "eu/h");
             addressTextView.setText(announcement.getParking().getPlace().getName() + " " + announcement.getParking().getNumber() + " " + announcement.getParking().getStreet());
-            parkingImage.setImageResource(R.drawable.place);
+
+            if(announcement.getParking().getPicture().equals("1"))
+            {
+                parkingImage.setImageResource(R.drawable.place);
+            }
+            else if(announcement.getParking().getPicture().equals("2"))
+            {
+                parkingImage.setImageResource(R.drawable.place2);
+            }
+            else
+            {
+                parkingImage.setImageResource(R.drawable.place3);
+            }
 
 
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.map);
+
+
+
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(ViewAnnouncement.this);
         }
     }
@@ -101,9 +118,9 @@ public class ViewAnnouncement extends AppCompatActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng parking = new LatLng(50.4673883, 4.871985399999971);
+        LatLng parking = new LatLng(announcementGlob.getParking().getLatitude(), announcementGlob.getParking().getLongitude());
         mMap.addMarker(new MarkerOptions().position(parking).title(announcementGlob.getParking().getName()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(parking));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(parking,15.0F));
     }
 
     @Override

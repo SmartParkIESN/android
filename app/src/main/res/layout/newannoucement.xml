@@ -76,9 +76,6 @@
             android:textStyle="normal|bold"
             android:layout_marginTop="60dp"
             android:textColor="@android:color/holo_blue_dark" />
-
-
-
     </TableLayout>
 
 </LinearLayout>

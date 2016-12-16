@@ -6,14 +6,20 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.DatePicker;
 import android.app.DatePickerDialog;
+import android.widget.Spinner;
 
 
+import com.henallux.projet.smartpark.DAO.PlaceDAO;
 import com.henallux.projet.smartpark.R;
+import com.henallux.projet.smartpark.controller.PlaceController;
+import com.henallux.projet.smartpark.modele.Place;
 import com.henallux.projet.smartpark.modele.User;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**

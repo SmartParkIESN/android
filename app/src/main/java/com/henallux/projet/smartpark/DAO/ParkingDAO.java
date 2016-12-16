@@ -103,12 +103,15 @@ public class ParkingDAO {
 
     public double[] geocalisation(Parking parking) throws Exception
     {
-        String URL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + parking.getNumber() + "+" + parking.getStreet() + "+Namur+BE&key=AIzaSyAa5KwFPV6nzXsrusVBFi4KNGKokKecc7I" ;
+
+        String URL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + parking.getNumber() + "+" + parking.getStreet() + "+" + parking.getPlace().getName() +"+BE&key=AIzaSyAa5KwFPV6nzXsrusVBFi4KNGKokKecc7I" ;
+        Log.d("test", URL);
         URL url = new URL(URL);
         URLConnection connection = url.openConnection();
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder sb = new StringBuilder();
         String stringJson = "", line;
+
         while((line = br.readLine()) != null)
         {
             sb.append(line);
