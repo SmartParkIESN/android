@@ -3,12 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/menuAnnoucement_mail"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_email"
         android:title="@string/menuAnnoucement_mail" />
     <item
         android:id="@+id/menuAnnoucement_call"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:title="@string/menuAnnoucement_call"
         android:icon="@drawable/ic_phone" />
+    <item
+        android:id="@+id/menuAnnoucement_report"
+        app:showAsAction="ifRoom"
+        android:title="@string/menuAnnoucement_report"
+        android:icon="@drawable/ic_report" />
 </menu>

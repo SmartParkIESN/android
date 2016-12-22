@@ -43,6 +43,7 @@
     <string name="priceFromTxt">Price from</string>
     <string name="priceToTxt">to</string>
     <string name="createAnnoucementPlace">Place</string>
+    <string name="menuAnnoucement_report">Report</string>
 
     <string-array name="places">
         <item>Namur</item>

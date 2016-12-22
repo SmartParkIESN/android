@@ -1,9 +1,11 @@
 package com.henallux.projet.smartpark.business;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -13,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,9 +26,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.henallux.projet.smartpark.R;
 import com.henallux.projet.smartpark.controller.AnnoucementController;
+import com.henallux.projet.smartpark.controller.ReportingController;
 import com.henallux.projet.smartpark.modele.Announcement;
+import com.henallux.projet.smartpark.modele.Reporting;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ViewAnnouncement extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -144,9 +150,51 @@ public class ViewAnnouncement extends AppCompatActivity implements OnMapReadyCal
                 intent.setData(Uri.parse("mailto:" + announcementGlob.getParking().getUser().getEmail()));
                 startActivity(intent);
                 return true;
+            case R.id.menuAnnoucement_report:
+                new AlertDialog.Builder(this)
+                        .setTitle("Report")
+                        .setMessage("Do you really want to report this announcement ?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+
+                            }})
+                        .setNegativeButton(android.R.string.no, null).show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    private class reportAnnoucement extends AsyncTask<String, Void, Boolean>
+    {
+
+        @Override
+        protected Boolean doInBackground(String... log) {
+
+            Date date = new Date();
+            Reporting reporting = new Reporting(date, announcementGlob.getId());
+            ReportingController reportingController = new ReportingController();
+
+            try
+            {
+                reportingController.postReporting(reporting);
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean boll)
+        {
+            Toast toast = Toast.makeText(ViewAnnouncement.this, "Reported !", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 }

@@ -8,14 +8,19 @@ public class Reporting {
 
     int Id;
     Date date;
-    Announcement Annouce;
-    User user;
+    Announcement Announce;
+    int AnnoucementId;
 
-    public Reporting(int id, Date date, Announcement annouce, User user) {
+    public Reporting(Date date, int annoucementId) {
+        this.date = date;
+        AnnoucementId = annoucementId;
+    }
+
+    public Reporting(int id, Date date, int annoucementId, Announcement announce) {
         Id = id;
         this.date = date;
-        Annouce = annouce;
-        this.user = user;
+        Announce = announce;
+        AnnoucementId = annoucementId;
     }
 
     public int getId() {
@@ -34,19 +39,15 @@ public class Reporting {
         this.date = date;
     }
 
-    public Announcement getAnnouce() {
-        return Annouce;
+    public int getAnnoucementId() {return AnnoucementId;}
+
+    public void setAnnoucementId(int annoucementId) {AnnoucementId = annoucementId;}
+
+    public Announcement getAnnounce() {
+        return Announce;
     }
 
-    public void setAnnouce(Announcement annouce) {
-        Annouce = annouce;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setAnnounce(Announcement announce) {
+        Announce = announce;
     }
 }

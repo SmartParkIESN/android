@@ -71,7 +71,7 @@ public class UserDAO {
     public User getUser(String pseudo) throws Exception
     {
 
-        String URL = "http://smartpark1.azurewebsites.net/api/Users/" + pseudo;
+        String URL = "http://smartpark1.azurewebsites.net/api/Users/pseudo/" + pseudo;
         URL url = new URL(URL);
         URLConnection connection = url.openConnection();
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
