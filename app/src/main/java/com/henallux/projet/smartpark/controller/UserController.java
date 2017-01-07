@@ -1,6 +1,12 @@
 package com.henallux.projet.smartpark.controller;
 
 import com.henallux.projet.smartpark.DAO.UserDAO;
+import com.henallux.projet.smartpark.exceptions.LoginException;
+import com.henallux.projet.smartpark.exceptions.MailException;
+import com.henallux.projet.smartpark.exceptions.PasswordException;
+import com.henallux.projet.smartpark.exceptions.PhoneException;
+import com.henallux.projet.smartpark.exceptions.PseudoException;
+import com.henallux.projet.smartpark.exceptions.SignUpException;
 import com.henallux.projet.smartpark.modele.User;
 
 /**
@@ -15,18 +21,18 @@ public class UserController {
         userDAO = new UserDAO();
     }
 
-    public Boolean signIn(String pseudo, String password) throws Exception
+    public void signIn(String pseudo, String password) throws LoginException, PseudoException, PasswordException
     {
-        return userDAO.signIn(pseudo, password);
+        userDAO.signIn(pseudo, password);
     }
 
-    public Boolean signUp(User user) throws Exception
+    public void signUp(User user) throws Exception, PseudoException, PasswordException, MailException, PhoneException, SignUpException
     {
-        return userDAO.signUp(user);
+        userDAO.signUp(user);
     }
 
-    public boolean modifyUser(User user) throws Exception
+    public void modifyUser(User user) throws Exception, PasswordException, MailException, PhoneException
     {
-        return userDAO.modifyUser(user);
+        userDAO.modifyUser(user);
     }
 }

@@ -33,7 +33,20 @@ public class Welcome extends AppCompatActivity {
         View view = findViewById(R.id.activity_main);
 
 
-        new loadAnnoucements().execute();
+        Bundle bundle = this.getIntent().getExtras();
+
+        if(bundle != null)
+        {
+            String priceFrom = bundle.getString("from");
+            String priceTo = bundle.getString("to");
+            new loadAnnoucementsPrice().execute(priceFrom, priceTo);
+        }
+        else
+        {
+            new loadAnnoucements().execute();
+        }
+
+
 
     }
 
@@ -49,6 +62,58 @@ public class Welcome extends AppCompatActivity {
             try
             {
                 annoucements = annoucementsController.getAllAnnoucements();
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return annoucements;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Announcement> annoucements)
+        {
+            ListView listAnnounces;
+            listAnnounces = (ListView) findViewById(R.id.listAnnounces);
+            final ArrayList<Announcement> annoucementslist = annoucements;
+
+            AnnoucementsAdapter adapter = new AnnoucementsAdapter(Welcome.this, annoucementslist);
+            listAnnounces.setAdapter(adapter);
+
+            listAnnounces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    // 1
+                    Announcement selectedAnnouncement = annoucementslist.get(position);
+
+                    // 2
+                    Intent ViewAnnouncementIntent = new Intent(Welcome.this, ViewAnnouncement.class);
+
+                    // 3
+                    ViewAnnouncementIntent.putExtra("id", "" + selectedAnnouncement.getId());
+
+                    // 4
+                    startActivity(ViewAnnouncementIntent);
+                }
+
+            });
+        }
+    }
+
+    private class loadAnnoucementsPrice extends AsyncTask<String, Void, ArrayList<Announcement>>
+    {
+
+        @Override
+        protected ArrayList<Announcement> doInBackground(String... log) {
+
+            ArrayList<Announcement> annoucements = new ArrayList<>();
+            AnnoucementController annoucementsController = new AnnoucementController();
+
+            try
+            {
+                annoucements = annoucementsController.getPriceAnnoucements(log[0], log[1]);
             }
             catch (Exception e)
             {

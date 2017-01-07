@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import com.henallux.projet.smartpark.R;
 import com.henallux.projet.smartpark.controller.UserController;
+import com.henallux.projet.smartpark.exceptions.LoginException;
+import com.henallux.projet.smartpark.exceptions.PasswordException;
+import com.henallux.projet.smartpark.exceptions.PseudoException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,39 +65,44 @@ public class SignIn extends Activity {
 
     }
 
-    private class logIn extends AsyncTask<String, Void, Boolean>
+    private class logIn extends AsyncTask<String, Void, String>
     {
 
         @Override
-        protected Boolean doInBackground(String... log) {
+        protected String doInBackground(String... log) {
 
-            Boolean connection = false;
             UserController userController = new UserController();
             try
             {
-                connection = userController.signIn(log[0], log[1]);
+                userController.signIn(log[0], log[1]);
+                return "";
             }
-            catch (Exception e)
+            catch (PseudoException e)
             {
-
+                return e.getMessage();
             }
-
-            return connection;
+            catch (PasswordException e)
+            {
+                return e.getMessage();
+            }
+            catch (LoginException e)
+            {
+                return e.getMessage();
+            }
         }
 
         @Override
-        protected void onPostExecute(Boolean connection)
+        protected void onPostExecute(String connection)
         {
-            if(connection)
+            if(connection != "")
+            {
+                Toast.makeText(SignIn.this, connection, Toast.LENGTH_LONG).show();
+            }
+            else
             {
                 Intent intent = new Intent(SignIn.this, Welcome.class);
                 startActivity(intent);
             }
-            else
-            {
-                Toast.makeText(SignIn.this, "Connexion impossible", Toast.LENGTH_SHORT).show();
-            }
-
         }
     }
 

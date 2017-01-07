@@ -8,11 +8,22 @@ import android.util.Log;
 
 import org.json.*;
 import java.io.*;
+import java.math.BigInteger;
 import java.net.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.google.gson.Gson;
 import com.henallux.projet.smartpark.business.UserConnected;
+import com.henallux.projet.smartpark.exceptions.LoginException;
+import com.henallux.projet.smartpark.exceptions.MailException;
+import com.henallux.projet.smartpark.exceptions.PasswordException;
+import com.henallux.projet.smartpark.exceptions.PhoneException;
+import com.henallux.projet.smartpark.exceptions.PseudoException;
+import com.henallux.projet.smartpark.exceptions.SignUpException;
 import com.henallux.projet.smartpark.modele.User;
 
 
@@ -23,33 +34,135 @@ public class UserDAO {
 
     }
 
-    public Boolean signIn(String pseudo, String password) throws Exception
+    public void signIn(String pseudo, String password) throws LoginException, PseudoException, PasswordException
     {
-        User user = getUser(pseudo);
-        if(user != null)
+        if(pseudo != "")
         {
-            if(password.equals(user.getPassword()))
+            if(pseudo.length() < 4 || pseudo.length() > 20)
+            {
+                throw new PseudoException();
+            }
+        }
+        else
+        {
+            throw new PseudoException();
+        }
+
+        if(password != "")
+        {
+            if(password.length() < 4 || password.length() > 20)
+            {
+                throw new PasswordException();
+            }
+        }
+        else
+        {
+            throw new PseudoException();
+        }
+
+        try
+        {
+            User user = getUser(pseudo);
+            String passMD5 = MD5(password);
+            if(user.getPassword().equals(passMD5))
             {
                 UserConnected userConnected = new UserConnected().getINSTANCE();
                 userConnected.setConnected(true);
                 userConnected.setLastAction();
                 userConnected.setUser(user);
-                return true;
             }
             else
             {
-                return false;
+                throw new LoginException();
             }
         }
-        else
+        catch (Exception e)
         {
-            return false;
+            throw new LoginException();
         }
     }
 
-    public Boolean signUp(User user) throws Exception
+    public String MD5(String input) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        byte[] messageDigest = md.digest(input.getBytes());
+        BigInteger number = new BigInteger(1, messageDigest);
+        String hashtext = number.toString(16);
+        while (hashtext.length() < 32) {
+            hashtext = "0" + hashtext;
+        }
+        return hashtext;
+    }
+
+    public boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
+
+
+    public void signUp(User user) throws Exception, PseudoException, PasswordException, MailException, PhoneException, SignUpException
     {
+        User userGet = null;
+
+        if(user.getPseudo().length() < 4 || user.getPseudo().length() > 20)
+        {
+            throw new PseudoException();
+        }
+
+        //Verif si user exist deja via pseudo
+        try
+        {
+            userGet = getUser(user.getPseudo());
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        if(userGet != null)
+        {
+            throw new SignUpException();
+        }
+        ////s
+
+        if(user.getEmail().length() < 4 || user.getPseudo().length() > 30)
+        {
+            throw new MailException("Mail must be between 4 an 30 char.");
+        }
+
+        if (!isValidEmailAddress(user.getEmail()))
+        {
+            throw new MailException("Invalid mail !");
+        }
+        ////
+
+        if(user.getPassword().length() < 4 || user.getPseudo().length() > 20)
+        {
+            throw new PasswordException();
+        }
+
+        if(!user.getPhonenumber().equals(""))
+        {
+            if(user.getPhonenumber().length() < 6 || user.getPhonenumber().length() > 18)
+            {
+                throw new PhoneException("Phone number must be between 6 an 18 char.");
+            }
+
+            try
+            {
+                int phoneInt = Integer.parseInt(user.getPhonenumber());
+            }
+            catch (NumberFormatException nfe)
+            {
+                throw new PhoneException("Phone number must be numeric !");
+            }
+        }
+
+
+
         int responseCode= 0;
+        user.setPassword(MD5(user.getPassword()));
         URL url = new URL("http://smartpark1.azurewebsites.net/api/Users");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
@@ -65,7 +178,6 @@ public class UserDAO {
         outputStream.close();
         connection.disconnect();
 
-        return true;
     }
 
     public User getUser(String pseudo) throws Exception
@@ -86,7 +198,6 @@ public class UserDAO {
         stringJson = sb.toString();
 
         return jsonToUser(stringJson);
-
     }
 
     public User getUserById(int id) throws Exception
@@ -132,8 +243,43 @@ public class UserDAO {
         return user;
     }
 
-    public boolean modifyUser(User user) throws Exception
+    public void modifyUser(User user) throws Exception
     {
+
+        if(user.getEmail().length() < 4 || user.getPseudo().length() > 30)
+        {
+            throw new MailException("Mail must be between 4 an 30 char.");
+        }
+
+        if (!isValidEmailAddress(user.getEmail()))
+        {
+            throw new MailException("Invalid mail !");
+        }
+        ////
+
+        if(user.getPassword().length() < 4 || user.getPseudo().length() > 20)
+        {
+            throw new PasswordException();
+        }
+
+        if(!user.getPhonenumber().equals(""))
+        {
+            if(user.getPhonenumber().length() < 6 || user.getPhonenumber().length() > 18)
+            {
+                throw new PhoneException("Phone number must be between 6 an 18 char.");
+            }
+
+            try
+            {
+                int phoneInt = Integer.parseInt(user.getPhonenumber());
+            }
+            catch (NumberFormatException nfe)
+            {
+                throw new PhoneException("Phone number must be numeric !");
+            }
+        }
+
+        user.setPassword(MD5(user.getPassword()));
         int responseCode= 0;
         URL url = new URL("http://smartpark1.azurewebsites.net/api/Users/" + user.getUserId());
         Log.d("response code", "" + url);
@@ -150,9 +296,7 @@ public class UserDAO {
         writer.close();
         outputStream.close();
         connection.disconnect();
-        Log.d("response code", "" + responseCode);
 
-        return true;
     }
 
 

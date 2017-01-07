@@ -1,10 +1,8 @@
 package com.henallux.projet.smartpark.business;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,10 +11,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.places.Places;
 import com.henallux.projet.smartpark.R;
 import com.henallux.projet.smartpark.controller.ParkingController;
 import com.henallux.projet.smartpark.controller.PlaceController;
+import com.henallux.projet.smartpark.exceptions.AdressException;
+import com.henallux.projet.smartpark.exceptions.StreetException;
+import com.henallux.projet.smartpark.exceptions.DescriptionException;
+import com.henallux.projet.smartpark.exceptions.NumberException;
+import com.henallux.projet.smartpark.exceptions.TitleException;
 import com.henallux.projet.smartpark.modele.Parking;
 import com.henallux.projet.smartpark.modele.Place;
 import com.henallux.projet.smartpark.modele.User;
@@ -71,29 +73,47 @@ public class NewParking extends AppCompatActivity {
 
     }
 
-    private class postParking extends AsyncTask<Parking, Void, Boolean>
+    private class postParking extends AsyncTask<Parking, Void, String>
     {
 
         @Override
-        protected Boolean doInBackground(Parking... log) {
-
-            Boolean heuuu = false;
+        protected String doInBackground(Parking... log) {
             ParkingController parkingController = new ParkingController();
             try
             {
                parkingController.postParking(log[0]);
+                return "Successfull !";
+            }
+            catch (TitleException e)
+            {
+                return e.getMessage();
+            }
+            catch (DescriptionException e)
+            {
+                return e.getMessage();
+            }
+            catch (StreetException e)
+            {
+                return e.getMessage();
+            }
+            catch (NumberException e)
+            {
+                return e.getMessage();
+            }
+            catch (AdressException e)
+            {
+                return e.getMessage();
             }
             catch (Exception e)
             {
-
+                return "Connection error !";
             }
-            return heuuu;
         }
 
         @Override
-        protected void onPostExecute(Boolean heuuu)
+        protected void onPostExecute(String msg)
         {
-
+            Toast.makeText(NewParking.this, msg, Toast.LENGTH_LONG).show();
         }
     }
 

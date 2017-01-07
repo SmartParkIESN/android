@@ -1,6 +1,8 @@
 package com.henallux.projet.smartpark.controller;
 
 import com.henallux.projet.smartpark.DAO.AnnoucementDAO;
+import com.henallux.projet.smartpark.exceptions.PriceException;
+import com.henallux.projet.smartpark.exceptions.TitleException;
 import com.henallux.projet.smartpark.modele.Announcement;
 
 import java.util.ArrayList;
@@ -23,6 +25,12 @@ public class AnnoucementController {
         return annoucementDAO.getAllAnnoucements();
     }
 
+    public ArrayList<Announcement> getPriceAnnoucements(String f, String t) throws Exception
+    {
+        return annoucementDAO.getPriceAnnoucements(f, t);
+    }
+
+
     public Announcement getAnnoucementById(String id) throws Exception
     {
         return annoucementDAO.getAnnoucementById(id);
@@ -30,6 +38,11 @@ public class AnnoucementController {
     public ArrayList<Announcement> getAnnoucementByUserId(int UserId) throws Exception
     {
         return annoucementDAO.getAnnoucementByUserId(UserId);
+    }
+
+    public void postAnnouncement(Announcement announcement) throws Exception, TitleException, PriceException
+    {
+        annoucementDAO.postAnnouncement(announcement);
     }
 
 

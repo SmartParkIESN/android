@@ -2,6 +2,9 @@ package com.henallux.projet.smartpark.DAO;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.henallux.projet.smartpark.exceptions.PriceException;
+import com.henallux.projet.smartpark.exceptions.TitleException;
 import com.henallux.projet.smartpark.modele.Announcement;
 import com.henallux.projet.smartpark.modele.Parking;
 import com.henallux.projet.smartpark.modele.Place;
@@ -12,6 +15,9 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
@@ -27,6 +33,25 @@ public class AnnoucementDAO {
     public AnnoucementDAO()
     {
 
+    }
+
+
+    public ArrayList<Announcement> getPriceAnnoucements(String f, String t) throws Exception
+    {
+        String URL = "http://smartpark1.azurewebsites.net/api/Announcements/price/" + f +"/" + t;
+        java.net.URL url = new URL(URL);
+        URLConnection connection = url.openConnection();
+        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        String stringJson = "", line;
+        while((line = br.readLine()) != null)
+        {
+            sb.append(line);
+
+        }
+        br.close();
+        stringJson = sb.toString();
+        return jsonToAnnoucements(stringJson);
     }
 
     public ArrayList<Announcement> getAllAnnoucements() throws Exception
@@ -122,6 +147,47 @@ public class AnnoucementDAO {
         }
 
         return annoucements;
+    }
+
+    public void postAnnouncement(Announcement announcement) throws Exception, TitleException, PriceException
+    {
+
+        if(announcement.getTitle().length() < 4 || announcement.getTitle().length() > 30)
+        {
+            throw new TitleException();
+        }
+
+        if(announcement.getPrice() < 1)
+        {
+            throw new PriceException();
+        }
+
+
+        announcement.setParking(null);
+
+        int responseCode= 0;
+        URL url = new URL("http://smartpark1.azurewebsites.net/api/Announcements");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-type", "application/json");
+        connection.setDoOutput(true);
+        OutputStream outputStream = connection.getOutputStream();
+        OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+        connection.connect();
+        writer.write(AnnouncementToJson(announcement));
+        writer.flush();
+        responseCode = connection.getResponseCode();
+        writer.close();
+        outputStream.close();
+        connection.disconnect();
+
+    }
+
+    public <T> String AnnouncementToJson(T announcement)
+    {
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(announcement);
+        return jsonString;
     }
 
     private Announcement jsonToAnnoucement(String stringJson) throws Exception

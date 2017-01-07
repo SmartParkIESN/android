@@ -35,6 +35,16 @@ public class Announcement {
         parkingId = pId;
     }
 
+    public Announcement(String t, int p, Date df, Date dt, Boolean r, int pId)
+    {
+        Title = t;
+        Price = p;
+        DateFrom = df;
+        DateTo = dt;
+        Rented = r;
+        parkingId = pId;
+    }
+
     public int getId() {
         return AnnouncementId;
     }

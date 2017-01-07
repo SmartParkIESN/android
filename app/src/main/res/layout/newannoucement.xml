@@ -36,30 +36,6 @@
         </TableRow>
         <TableRow>
             <TextView
-                android:text="@string/createAnnoucementdateFrom"
-                android:padding="10dp"
-                android:gravity="left"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pick_dateFrom"
-                android:onClick="showDatePickerFromDialog" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:text="@string/createAnnoucementdateTo"
-                android:padding="10dp"
-                android:gravity="left"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pick_dateTo"
-                android:onClick="showDatePickerToDialog" />
-
-        </TableRow>
-        <TableRow>
-            <TextView
                 android:text="@string/createAnnoucementPrice"
                 android:padding="10dp"
                 android:gravity="left"/>
@@ -67,8 +43,18 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/CreateParkingPrice"
+                android:id="@+id/CreateAnnoucementPrice"
                 android:layout_width="wrap_content"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="@string/createAnnouncementParking"
+                android:padding="10dp"
+                android:gravity="left"/>
+            <Spinner
+                android:id="@+id/createAnnouncementParking"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
         </TableRow>
         <Button
             android:text="@string/createTxt"

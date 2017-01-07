@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import com.henallux.projet.smartpark.R;
 import com.henallux.projet.smartpark.controller.UserController;
+import com.henallux.projet.smartpark.exceptions.MailException;
+import com.henallux.projet.smartpark.exceptions.PasswordException;
+import com.henallux.projet.smartpark.exceptions.PhoneException;
 import com.henallux.projet.smartpark.modele.User;
 
 /**
@@ -67,8 +70,7 @@ public class Profile extends AppCompatActivity {
                 }
                 else
                 {
-                    Snackbar snackbar = Snackbar.make(view, "Passwords don't match !", Snackbar.LENGTH_LONG);
-                    snackbar.show();
+                    Toast.makeText(Profile.this, "Passwords don't match !", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -77,38 +79,40 @@ public class Profile extends AppCompatActivity {
 
     }
 
-    private class modifyUser extends AsyncTask<User, Void, Boolean>
+    private class modifyUser extends AsyncTask<User, Void, String>
     {
 
         @Override
-        protected Boolean doInBackground(User... log) {
+        protected String doInBackground(User... log) {
 
-            Boolean modify = false;
             UserController userController = new UserController();
             try
             {
-                modify = userController.modifyUser(log[0]);
+                userController.modifyUser(log[0]);
+                return "Update successful !";
+            }
+            catch (PasswordException e)
+            {
+                return e.getMessage();
+            }
+            catch (MailException e)
+            {
+                return e.getMessage();
+            }
+            catch (PhoneException e)
+            {
+                return e.getMessage();
             }
             catch (Exception e)
             {
-
+                return "Error connection !";
             }
-
-            return modify;
         }
 
         @Override
-        protected void onPostExecute(Boolean modify)
+        protected void onPostExecute(String modify)
         {
-            if(modify)
-            {
-                Toast.makeText(Profile.this, "Ok", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                Toast.makeText(Profile.this, "Modification impossible", Toast.LENGTH_SHORT).show();
-            }
-
+            Toast.makeText(Profile.this, modify, Toast.LENGTH_SHORT).show();
         }
     }
 

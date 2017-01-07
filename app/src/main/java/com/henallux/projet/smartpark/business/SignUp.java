@@ -14,6 +14,11 @@ import android.widget.Toast;
 
 import com.henallux.projet.smartpark.R;
 import com.henallux.projet.smartpark.controller.UserController;
+import com.henallux.projet.smartpark.exceptions.MailException;
+import com.henallux.projet.smartpark.exceptions.PasswordException;
+import com.henallux.projet.smartpark.exceptions.PhoneException;
+import com.henallux.projet.smartpark.exceptions.PseudoException;
+import com.henallux.projet.smartpark.exceptions.SignUpException;
 import com.henallux.projet.smartpark.modele.User;
 
 /**
@@ -58,46 +63,56 @@ public class SignUp extends AppCompatActivity {
                 }
                 else
                 {
-                    Snackbar snackbar = Snackbar.make(view, "Passwords don't match !", Snackbar.LENGTH_LONG);
-                    snackbar.show();
+                    Toast.makeText(SignUp.this, "Passwords don't match !", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
     }
 
-    private class signUp extends AsyncTask<User, Void, Boolean>
+    private class signUp extends AsyncTask<User, Void, String>
     {
 
         @Override
-        protected Boolean doInBackground(User... log) {
+        protected String doInBackground(User... log) {
 
-            Boolean signUp = false;
             UserController userController = new UserController();
             try
             {
-                signUp = userController.signUp(log[0]);
+                userController.signUp(log[0]);
+                return "Sign up successful !";
+            }
+            catch (SignUpException e)
+            {
+                return e.getMessage();
+            }
+            catch (PseudoException e)
+            {
+                return e.getMessage();
+            }
+            catch (PasswordException e)
+            {
+                return e.getMessage();
+            }
+            catch (MailException e)
+            {
+                return e.getMessage();
+            }
+            catch (PhoneException e)
+            {
+                return e.getMessage();
             }
             catch (Exception e)
             {
-
+                return "Connection error !";
             }
 
-            return signUp;
         }
 
         @Override
-        protected void onPostExecute(Boolean signUp)
+        protected void onPostExecute(String signUp)
         {
-            if(signUp)
-            {
-                Toast.makeText(SignUp.this, "Inscription Réussie !", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                Toast.makeText(SignUp.this, "Inscription impossible", Toast.LENGTH_SHORT).show();
-            }
-
+            Toast.makeText(SignUp.this, signUp, Toast.LENGTH_SHORT).show();
         }
     }
 
